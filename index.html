@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>💕 A Little Question...</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --pink:#ff89c6;
+      --magenta:#d1007a;
+      --bg:#fff5fb;
+      --text:#2b2231;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 20% 0%, #ffe3f4 0%, #fff 60%),
+                  linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    /* Card with pink→magenta gradient border and rounded corners */
+    .card{
+      position:relative;
+      width:min(920px, 100%);
+      border-radius:28px;
+      padding:0; /* content padding is inside .card__inner */
+      isolation:isolate; /* keep pseudo under content */
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:0;
+      border-radius:28px;
+      padding:3px; /* border thickness */
+      background:linear-gradient(135deg, var(--pink), var(--magenta));
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box, 
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      z-index:-1;
+    }
+    .card__inner{
+      border-radius:24px;
+      background:#fff;
+      box-shadow: 0 12px 40px rgba(209,0,122,0.12), 0 2px 8px rgba(0,0,0,0.05);
+      overflow:hidden;
+    }
+
+    /* Top image */
+    .hero{
+      position:relative;
+      aspect-ratio: 16/9;
+      width:100%;
+      display:block;
+      object-fit:cover;
+    }
+    .ribbon{
+      position:absolute; inset:auto 16px -18px auto; 
+      background:#fff; 
+      color:var(--magenta);
+      padding:8px 14px; 
+      border-radius:999px; 
+      font-weight:700; 
+      font-size:0.95rem; 
+      box-shadow:0 6px 18px rgba(0,0,0,.12);
+      border:2px solid #ffd1ec;
+    }
+
+    .content{ padding:22px clamp(18px, 4vw, 36px) 28px; }
+    h1{ 
+      margin:6px 0 8px; 
+      font-size:clamp(1.6rem, 2vw + 1rem, 2.4rem);
+      line-height:1.15; 
+      letter-spacing:.3px;
+    }
+    p.lead{ 
+      margin:0 0 16px; 
+      font-size:clamp(1rem, .6vw + .9rem, 1.15rem); 
+      color:#5b5063
+    }
+
+    .cta{
+      display:flex; 
+      flex-wrap:wrap; 
+      gap:12px; 
+      margin-top:8px;
+    }
+    .btn{
+      --ring: transparent;
+      appearance:none; border:0; cursor:pointer; 
+      padding:12px 18px; 
+      border-radius:999px; 
+      font-weight:700; 
+      transition:transform .08s ease, box-shadow .2s ease, background .3s ease;
+      box-shadow: 0 6px 22px rgba(209,0,122,0.18);
+      outline: none;
+    }
+    .btn:active{ transform: translateY(1px) scale(.99); }
+    .btn-primary{
+      background: linear-gradient(135deg, var(--pink), var(--magenta));
+      color:#fff;
+    }
+    .btn-ghost{
+      background:#fff; 
+      color:var(--magenta); 
+      border:2px solid #ffd1ec;
+      box-shadow: none;
+    }
+
+    /* Music bar */
+    .music{
+      display:flex; align-items:center; gap:10px; 
+      background:#fff6fb; border:1.5px dashed #ffc3e7; 
+      padding:10px 12px; border-radius:14px; 
+      margin:14px 0 0;
+      flex-wrap:wrap;
+    }
+    .music small{color:#7b6b86}
+    audio{ width: 220px; max-width: 100%; }
+
+    /* Floating hearts */
+    .hearts{ position:fixed; inset:0; pointer-events:none; overflow:hidden; }
+    .heart{ position:absolute; font-size:12px; opacity:.9; animation: floatUp linear forwards; }
+    @keyframes floatUp{
+      from{ transform: translateY(0) translateX(0) scale(1); opacity:1 }
+      to{ transform: translateY(-120vh) translateX(var(--x, 0)) scale(1.8); opacity:0 }
+    }
+
+    /* Footer note */
+    .note{ font-size:.9rem; color:#7b6b86; margin-top:12px }
+
+    /* Responsiveness extras */
+    @media (min-width: 920px){
+      .content{ padding:26px 44px 36px }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+  <div class="card" role="region" aria-label="Love proposal card with image, message, and music">
+    <div class="card__inner">
+      <!-- 👉 Replace the image URL below with your own photo if you like -->
+      <div style="position:relative">
+        <img class="hero" alt="A romantic pink sky with hearts" src="img.jpg" />
+        <div class="ribbon">To- Hmare pyare motu sethji 💖</div>
+      </div>
+
+      <div class="content">
+        <h1>Hmari trf se hmare pyare motu ji k liye prem bhara proposal 💞</h1>
+        <p class="lead">Jaisa ki apko pta h ki hum aapse pyar krte h bhot saara but kbhi kbhi aap ldai krlete ho or hme kuch ulta pulta bol dete ho to hum chahte h ki hum aapko propose kre taaki aapki akad kmm ho or hmare vash m hojao hmesha k liye.</p>
+        <p class="lead">So here I am, with all my heart: <strong>Kya aap hmare ek pyare se motu bnna chahoge hmesha k liye?😚</strong></p>
+
+        <div class="cta">
+          <button class="btn btn-primary" id="btnYes" aria-label="Yes">Yes! 🥰</button>
+          <button class="btn btn-ghost" id="btnMaybe" aria-label="Maybe later">Ofcourse Yes 💌</button>
+        </div>
+
+        <div class="music">
+          <small>I love you the most hmare girdharilal hmare motu bandar❤️😚😚</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- hearts layer -->
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+
+  <script>
+    // ====== Background Music Setup ======
+    // 👉 Add your own MP3 file to the same folder and name it "music.mp3"
+    // or replace the src below with a full URL to your song.
+    
+
+    // ====== Hearts Animation ======
+    const hearts = document.getElementById('hearts');
+    function spawnHeart(x, y){
+      const el = document.createElement('div');
+      el.className = 'heart';
+      el.textContent = '❤';
+      const startX = x ?? Math.random() * window.innerWidth;
+      const drift = (Math.random() * 160 - 80) + 'px';
+      el.style.left = startX + 'px';
+      el.style.bottom = (y != null ? (window.innerHeight - y) : -10) + 'px';
+      el.style.setProperty('--x', drift);
+      el.style.animationDuration = (2.6 + Math.random() * 2.2) + 's';
+      el.style.filter = 'drop-shadow(0 2px 6px rgba(209,0,122,.25))';
+      hearts.appendChild(el);
+      el.addEventListener('animationend', () => el.remove());
+    }
+
+    // Sprinkle hearts periodically (increase frequency)
+    setInterval(() => spawnHeart(), 400);
+
+    // Extra burst when pressing buttons
+    function burstHearts(count=16){
+      for(let i=0;i<count;i++){
+        setTimeout(() => spawnHeart(window.innerWidth/2 + (Math.random()*200-100), window.innerHeight*0.75), i*40);
+      }
+    }
+
+    // Buttons behavior
+    const btnYes = document.getElementById('btnYes');
+    const btnMaybe = document.getElementById('btnMaybe');
+
+    btnYes.addEventListener('click', () => {
+      burstHearts(24);
+      const title = document.querySelector('h1');
+      title.textContent = 'I love you more hmara mota seth ji 💍';
+      const leadPs = document.querySelectorAll('.lead');
+      if(leadPs[1]) leadPs[1].textContent = '😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚😚';
+    });
+
+    btnMaybe.addEventListener('click', () => {
+      burstHearts(12);
+      const title = document.querySelector('h1');
+      title.textContent = 'Ye to hona hi tha😚😚';
+    });
+  </script>
+</body>
+</html>
