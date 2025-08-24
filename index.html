@@ -57,12 +57,14 @@
 
     /* Top image */
     .hero{
-      position:relative;
-      aspect-ratio: 16/9;
-      width:100%;
-      display:block;
-      object-fit:cover;
-    }
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover; /* keep cropping neat if proportions mismatch */
+  border-radius: 24px 24px 0 0; /* optional: rounded corners at top */
+}
+
     .ribbon{
       position:absolute; inset:auto 16px -18px auto; 
       background:#fff; 
@@ -230,3 +232,4 @@
   </script>
 </body>
 </html>
+
